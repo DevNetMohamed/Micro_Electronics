@@ -1,11 +1,17 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose  = require('mongoose');
+const userRouters = require('./routes/Users');
+const UserLoginRouters = require('./routes/login')
+const { statics } = require('./models/Users');
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 
+app.use(express.static("./static"));
+
+// DB connection
 async function dbconnection(){
     try{
      await mongoose.connect(process.env.URL);
@@ -17,6 +23,11 @@ async function dbconnection(){
 }
 
 dbconnection();
+
+// APi
+app.use('/api/register', userRouters);
+app.use('/api/login', UserLoginRouters)
+
 
 
 app.get('/app', (req, res, next)=>{
