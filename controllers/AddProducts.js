@@ -1,4 +1,5 @@
 const AddProdact = require("../models/AddProdacts");
+const user = require('../models/Users');
 
 const AddAllProdact = async (req, res) => {
   try {
@@ -18,6 +19,9 @@ const AddAllProdact = async (req, res) => {
 const GatAllProduct = async (req, res) => {
   try {
     const GetAll = await AddProdact.findById('userID');
+        if(user === "admin"){
+            return user;
+        }
     res.status(200).json({
       status: "Success",
       data: GetAll,
