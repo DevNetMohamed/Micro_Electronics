@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose  = require('mongoose');
 const userRouters = require('./routes/Users');
 const UserLoginRouters = require('./routes/login')
+const AddProdacts = require('./routes/AddProduct')
 const { statics } = require('./models/Users');
 const app = express();
 const port = 3000;
@@ -26,7 +27,8 @@ dbconnection();
 
 // APi
 app.use('/api/register', userRouters);
-app.use('/api/login', UserLoginRouters)
+app.use('/api/login', UserLoginRouters);
+app.use('/api/addProdact', AddProdacts)
 
 
 
